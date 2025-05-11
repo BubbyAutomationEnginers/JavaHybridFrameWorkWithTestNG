@@ -1,0 +1,1 @@
+{"uuid":"eed153aa-0efc-4286-a472-5261d254d202","name":"HybridTestNGFrameWork","children":["ac58d128-988c-4dc6-bec3-a6a7ca25e5a7"],"befores":[{"name":"launchingBrowser","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1746889550743,"stop":1746889552435}],"afters":[],"start":1746889550725,"stop":1746889554362}

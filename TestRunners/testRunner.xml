@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <suite name="Test suite">
     <listeners>
-        <listner class-name="TestListners.MyListners"/>
+<!--        <listner class-name="TestListners.MyListners"/>-->
+        <listner class-name="AllureTestListners.ListnerrsForAllure"/>
     </listeners>
     <test name="Test">
         <classes>
