@@ -27,6 +27,7 @@ public class TestCaess {
        String name= browser.findElement(By.className("dropdown")).getText();
         Assert.assertEquals("name","grte");
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
     @AfterTest
