@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.time.Duration;
+
 import static GenericUtilies.BrowserFactory.BrowserFactory.setUpBrowser;
 @Listeners({ListnerrsForAllure.class})
 public class TestCaess {
@@ -24,6 +26,7 @@ public class TestCaess {
         browser.findElement(By.id("logo")).click();
        String name= browser.findElement(By.className("dropdown")).getText();
         Assert.assertEquals("name","grte");
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @AfterTest
