@@ -2,22 +2,15 @@ package StepDefinitions;
 
 import AllureTestListners.ListnerrsForAllure;
 import GenericUtilies.BrowserFactory.BrowserFactory;
-import com.beust.jcommander.Parameter;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
 
-import static GenericUtilies.BrowserFactory.BrowserFactory.setUpBrowser;
 @Listeners({ListnerrsForAllure.class})
-public class TestCaess {
+public class TestCaess2 {
     private  WebDriver driver;
 
 

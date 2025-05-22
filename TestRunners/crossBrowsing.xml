@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cross Browser Test Suite" parallel="tests" thread-count="1">
+    <!--
+        parallel="tests" runs each <test> block in a separate thread.
+        thread-count="2" limits to 2 concurrent browsers (Chrome, Firefox).
+        Adjust thread-count based on system resources or grid capacity.
+    -->
+
+    <test name="Chrome Tests">
+        <parameter name="browser" value="chrome"/>
+        <!-- Pass browser type as a parameter to test classes -->
+        <classes>
+            <!-- Replace with your actual test class names and packages -->
+            <class name="StepDefinitions.TestCaess"/>
+            <!-- Add more <class> tags for additional test classes -->
+        </classes>
+    </test>
+
+    <test name="Firefox Tests">
+        <parameter name="browser" value="Firefox"/>
+        <!-- Pass browser type as a parameter to test classes -->
+        <classes>
+            <!-- Replace with your actual test class names and packages -->
+<!--            <class name="com.example.tests.CrossBrowserTest"/>-->
+            <!-- Add more <class> tags for additional test classes -->
+        </classes>
+    </test>
+    <test name="Edge Tests">
+        <parameter name="browser" value="edge"/>
+        <!-- Pass browser type as a parameter to test classes -->
+        <classes>
+            <!-- Replace with your actual test class names and packages -->
+            <class name="StepDefinitions.TestCaess"/>
+            <!-- Add more <class> tags for additional test classes -->
+        </classes>
+    </test>
+<!--    <test name="Safari Tests">-->
+<!--        <parameter name="browser" value="Safari"/>-->
+<!--        &lt;!&ndash; Pass browser type as a parameter to test classes &ndash;&gt;-->
+<!--        <classes>-->
+<!--            &lt;!&ndash; Replace with your actual test class names and packages &ndash;&gt;-->
+<!--            <class name="StepDefinitions.TestCaess"/>-->
+<!--            &lt;!&ndash; Add more <class> tags for additional test classes &ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!--
+        Add more <test> blocks for additional browsers (e.g., edge, safari).
+        Ensure Selenium WebDriver or grid supports the browser.
+    -->
+</suite>
