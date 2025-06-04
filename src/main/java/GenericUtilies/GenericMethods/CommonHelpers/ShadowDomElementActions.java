@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 public class ShadowDomElementActions {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private JavascriptExecutor jsExecutor;
+    private static WebDriver driver;
+    private static WebDriverWait wait;
+    private static JavascriptExecutor jsExecutor;
 
     // Constructor to initialize WebDriver, WebDriverWait, and JavascriptExecutor
     public ShadowDomElementActions(WebDriver driver) {
@@ -19,7 +19,7 @@ public class ShadowDomElementActions {
     }
 
     // 1. Get the shadow root of an element
-    public WebElement getShadowRoot(WebElement hostElement) {
+    public static WebElement getShadowRoot(WebElement hostElement) {
         try {
             return (WebElement) jsExecutor.executeScript("return arguments[0].shadowRoot", hostElement);
         } catch (Exception e) {
@@ -29,7 +29,7 @@ public class ShadowDomElementActions {
     }
 
     // 2. Find a single element inside a Shadow DOM
-    public WebElement findElementInShadowDom(WebElement shadowHost, String cssSelector) {
+    public static WebElement findElementInShadowDom(WebElement shadowHost, String cssSelector) {
         try {
             WebElement shadowRoot = getShadowRoot(shadowHost);
             if (shadowRoot == null) {
@@ -44,7 +44,7 @@ public class ShadowDomElementActions {
         }
     }
     // 3. Find multiple elements inside a Shadow DOM
-    public List<WebElement> findElementsInShadowDom(WebElement shadowHost, String cssSelector) {
+    public static List<WebElement> findElementsInShadowDom(WebElement shadowHost, String cssSelector) {
         try {
             WebElement shadowRoot = getShadowRoot(shadowHost);
             if (shadowRoot == null) {
@@ -59,7 +59,7 @@ public class ShadowDomElementActions {
     }
 
     // 4. Click an element inside a Shadow DOM
-    public void clickElementInShadowDom(WebElement shadowHost, String cssSelector) {
+    public static void clickElementInShadowDom(WebElement shadowHost, String cssSelector) {
         try {
             WebElement element = findElementInShadowDom(shadowHost, cssSelector);
             if (element != null) {
@@ -73,7 +73,7 @@ public class ShadowDomElementActions {
     }
 
     // 5. Send keys to an element inside a Shadow DOM
-    public void sendKeysToElementInShadowDom(WebElement shadowHost, String cssSelector, String text) {
+    public static void sendKeysToElementInShadowDom(WebElement shadowHost, String cssSelector, String text) {
         try {
             WebElement element = findElementInShadowDom(shadowHost, cssSelector);
             if (element != null) {
@@ -89,7 +89,7 @@ public class ShadowDomElementActions {
     }
 
     // 6. Get text from an element inside a Shadow DOM
-    public String getTextFromElementInShadowDom(WebElement shadowHost, String cssSelector) {
+    public static String getTextFromElementInShadowDom(WebElement shadowHost, String cssSelector) {
         try {
             WebElement element = findElementInShadowDom(shadowHost, cssSelector);
             if (element != null) {
@@ -105,7 +105,7 @@ public class ShadowDomElementActions {
     }
 
     // 7. Check if an element is displayed inside a Shadow DOM
-    public boolean isElementDisplayedInShadowDom(WebElement shadowHost, String cssSelector) {
+    public static boolean isElementDisplayedInShadowDom(WebElement shadowHost, String cssSelector) {
         try {
             WebElement element = findElementInShadowDom(shadowHost, cssSelector);
             return element != null && wait.until(ExpectedConditions.visibilityOf(element)).isDisplayed();
@@ -116,7 +116,7 @@ public class ShadowDomElementActions {
     }
 
     // 8. Handle nested Shadow DOMs (find element in a nested shadow root)
-    public WebElement findElementInNestedShadowDom(WebElement shadowHost, String... cssSelectors) {
+    public static WebElement findElementInNestedShadowDom(WebElement shadowHost, String... cssSelectors) {
         try {
             WebElement currentElement = shadowHost;
             for (String selector : cssSelectors) {
@@ -135,7 +135,7 @@ public class ShadowDomElementActions {
     }
 
     // 9. Click an element in a nested Shadow DOM
-    public void clickElementInNestedShadowDom(WebElement shadowHost, String... cssSelectors) {
+    public static void clickElementInNestedShadowDom(WebElement shadowHost, String... cssSelectors) {
         try {
             WebElement element = findElementInNestedShadowDom(shadowHost, cssSelectors);
             if (element != null) {
@@ -149,7 +149,7 @@ public class ShadowDomElementActions {
     }
 
     // 10. Send keys to an element in a nested Shadow DOM
-    public void sendKeysToElementInNestedShadowDom(WebElement shadowHost, String text, String... cssSelectors) {
+    public static void sendKeysToElementInNestedShadowDom(WebElement shadowHost, String text, String... cssSelectors) {
         try {
             WebElement element = findElementInNestedShadowDom(shadowHost, cssSelectors);
             if (element != null) {
@@ -165,7 +165,7 @@ public class ShadowDomElementActions {
     }
 
     // 11. Get text from an element in a nested Shadow DOM
-    public String getTextFromElementInNestedShadowDom(WebElement shadowHost, String... cssSelectors) {
+    public static String getTextFromElementInNestedShadowDom(WebElement shadowHost, String... cssSelectors) {
         try {
             WebElement element = findElementInNestedShadowDom(shadowHost, cssSelectors);
             if (element != null) {
@@ -181,7 +181,7 @@ public class ShadowDomElementActions {
     }
 
     // 12. Check if an element exists in a Shadow DOM
-    public boolean doesElementExistInShadowDom(WebElement shadowHost, String cssSelector) {
+    public static boolean doesElementExistInShadowDom(WebElement shadowHost, String cssSelector) {
         try {
             WebElement element = findElementInShadowDom(shadowHost, cssSelector);
             return element != null;

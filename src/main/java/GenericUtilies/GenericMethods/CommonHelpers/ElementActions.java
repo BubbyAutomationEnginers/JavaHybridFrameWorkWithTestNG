@@ -12,10 +12,10 @@ import org.openqa.selenium.TimeoutException;
 import java.time.Duration;
 import java.util.List;
 public class ElementActions {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private Actions actions;
-    private JavascriptExecutor jsExecutor;
+    private static WebDriver driver;
+    private static WebDriverWait wait;
+    private static Actions actions;
+    private static JavascriptExecutor jsExecutor;
 
     // Constructor to initialize WebDriver, WebDriverWait, Actions, and JavascriptExecutor
     public ElementActions(WebDriver driver) {
@@ -26,7 +26,7 @@ public class ElementActions {
     }
 
     // 1. Click an element
-    public void clickElement(By locator) {
+    public static void clickElement(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
             element.click();
@@ -36,7 +36,7 @@ public class ElementActions {
     }
 
     // 2. Click an element using JavaScript (useful for elements not clickable via standard click)
-    public void clickElementWithJS(By locator) {
+    public static void clickElementWithJS(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
             jsExecutor.executeScript("arguments[0].click();", element);
@@ -46,7 +46,7 @@ public class ElementActions {
     }
 
     // 3. Send keys (enter text) to an element
-    public void sendKeysToElement(By locator, String text) {
+    public static void sendKeysToElement(By locator, String text) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             element.clear();
@@ -57,7 +57,7 @@ public class ElementActions {
     }
 
     // 4. Get text from an element
-    public String getElementText(By locator) {
+    public static String getElementText(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             return element.getText();
@@ -68,7 +68,7 @@ public class ElementActions {
     }
 
     // 5. Check if an element is displayed
-    public boolean isElementDisplayed(By locator) {
+    public static boolean isElementDisplayed(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             return element.isDisplayed();
@@ -79,7 +79,7 @@ public class ElementActions {
     }
 
     // 6. Check if an element is enabled
-    public boolean isElementEnabled(By locator) {
+    public static boolean isElementEnabled(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             return element.isEnabled();
@@ -90,7 +90,7 @@ public class ElementActions {
     }
 
     // 7. Check if an element is selected (e.g., checkbox or radio button)
-    public boolean isElementSelected(By locator) {
+    public static boolean isElementSelected(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             return element.isSelected();
@@ -101,7 +101,7 @@ public class ElementActions {
     }
 
     // 8. Get an attribute value of an element
-    public String getElementAttribute(By locator, String attributeName) {
+    public static String getElementAttribute(By locator, String attributeName) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             return element.getAttribute(attributeName);
@@ -112,7 +112,7 @@ public class ElementActions {
     }
 
     // 9. Select dropdown option by visible text
-    public void selectDropdownByText(By locator, String text) {
+    public static void selectDropdownByText(By locator, String text) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select dropdown = new Select(element);
@@ -123,7 +123,7 @@ public class ElementActions {
     }
 
     // 10. Select dropdown option by index
-    public void selectDropdownByIndex(By locator, int index) {
+    public static void selectDropdownByIndex(By locator, int index) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select dropdown = new Select(element);
@@ -134,7 +134,7 @@ public class ElementActions {
     }
 
     // 11. Select dropdown option by value
-    public void selectDropdownByValue(By locator, String value) {
+    public static void selectDropdownByValue(By locator, String value) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select dropdown = new Select(element);
@@ -145,7 +145,7 @@ public class ElementActions {
     }
 
     // 12. Deselect dropdown option by visible text
-    public void deselectDropdownByText(By locator, String text) {
+    public static void deselectDropdownByText(By locator, String text) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select dropdown = new Select(element);
@@ -156,7 +156,7 @@ public class ElementActions {
     }
 
     // 13. Deselect all options in a dropdown
-    public void deselectAllDropdown(By locator) {
+    public static void deselectAllDropdown(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select dropdown = new Select(element);
@@ -167,7 +167,7 @@ public class ElementActions {
     }
 
     // 14. Mouse hover over an element
-    public void mouseHover(By locator) {
+    public static void mouseHover(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             actions.moveToElement(element).perform();
@@ -177,7 +177,7 @@ public class ElementActions {
     }
 
     // 15. Drag and drop from source to target
-    public void dragAndDrop(By sourceLocator, By targetLocator) {
+    public static void dragAndDrop(By sourceLocator, By targetLocator) {
         try {
             WebElement source = wait.until(ExpectedConditions.visibilityOfElementLocated(sourceLocator));
             WebElement target = wait.until(ExpectedConditions.visibilityOfElementLocated(targetLocator));
@@ -188,7 +188,7 @@ public class ElementActions {
     }
 
     // 16. Right-click an element
-    public void rightClickElement(By locator) {
+    public static void rightClickElement(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             actions.contextClick(element).perform();
@@ -198,7 +198,7 @@ public class ElementActions {
     }
 
     // 17. Double-click an element
-    public void doubleClickElement(By locator) {
+    public static void doubleClickElement(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             actions.doubleClick(element).perform();
@@ -208,7 +208,7 @@ public class ElementActions {
     }
 
     // 18. Send keyboard keys to an element
-    public void sendKeyboardKeys(By locator, String keys) {
+    public static void sendKeyboardKeys(By locator, String keys) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             actions.sendKeys(element, keys).perform();
@@ -218,7 +218,7 @@ public class ElementActions {
     }
 
     // 19. Upload a file
-    public void uploadFile(By locator, String filePath) {
+    public static void uploadFile(By locator, String filePath) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             element.sendKeys(filePath);
@@ -228,7 +228,7 @@ public class ElementActions {
     }
 
     // 20. Handle alert - Accept
-    public void acceptAlert() {
+    public static void acceptAlert() {
         try {
             wait.until(ExpectedConditions.alertIsPresent()).accept();
         } catch (Exception e) {
@@ -237,7 +237,7 @@ public class ElementActions {
     }
 
     // 21. Handle alert - Dismiss
-    public void dismissAlert() {
+    public static void dismissAlert() {
         try {
             wait.until(ExpectedConditions.alertIsPresent()).dismiss();
         } catch (Exception e) {
@@ -246,7 +246,7 @@ public class ElementActions {
     }
 
     // 22. Get alert text
-    public String getAlertText() {
+    public static String getAlertText() {
         try {
             return wait.until(ExpectedConditions.alertIsPresent()).getText();
         } catch (Exception e) {
@@ -256,7 +256,7 @@ public class ElementActions {
     }
 
     // 23. Send text to alert
-    public void sendTextToAlert(String text) {
+    public static void sendTextToAlert(String text) {
         try {
             wait.until(ExpectedConditions.alertIsPresent()).sendKeys(text);
         } catch (Exception e) {
@@ -265,7 +265,7 @@ public class ElementActions {
     }
 
     // 24. Wait for element to disappear
-    public boolean waitForElementToDisappear(By locator) {
+    public static boolean waitForElementToDisappear(By locator) {
         try {
             return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (Exception e) {
@@ -275,7 +275,7 @@ public class ElementActions {
     }
 
     // 25. Find multiple elements and return their count
-    public int getElementsCount(By locator) {
+    public static int getElementsCount(By locator) {
         try {
             List<WebElement> elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
             return elements.size();
@@ -286,7 +286,7 @@ public class ElementActions {
     }
 
     // 26. Scroll to an element
-    public void scrollToElement(By locator) {
+    public static void scrollToElement(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
             jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
@@ -296,7 +296,7 @@ public class ElementActions {
     }
 
     // 27. Get CSS value of an element
-    public String getCssValue(By locator, String cssProperty) {
+    public static String getCssValue(By locator, String cssProperty) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             return element.getCssValue(cssProperty);
@@ -307,7 +307,7 @@ public class ElementActions {
     }
 
     // 28. Submit a form
-    public void submitForm(By locator) {
+    public static void submitForm(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             element.submit();
@@ -317,7 +317,7 @@ public class ElementActions {
     }
 
     // 29. Check if element exists
-    public boolean doesElementExist(By locator) {
+    public static boolean doesElementExist(By locator) {
         try {
             driver.findElement(locator);
             return true;

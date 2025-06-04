@@ -2,6 +2,7 @@ package StepDefinitions;
 
 import AllureTestListners.ListnerrsForAllure;
 import GenericUtilies.BrowserFactory.BrowserFactory;
+import GenericUtilies.GenericMethods.CommonHelpers.BrowserActionsHelper;
 import com.beust.jcommander.Parameter;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -24,15 +25,15 @@ public class TestCaess {
     @Parameters("browser")
     @BeforeTest
     public void launchingBrowser(String browser){
-
         driver= BrowserFactory.setUpBrowser(browser).createBrowser();
         driver.manage().window().maximize();
     }
 
     @Test
     public void login(){
-        driver.get("https://naveenautomationlabs.com/opencart/index.php");
-
+        BrowserActionsHelper browserActionsHelper= new BrowserActionsHelper(driver);
+        browserActionsHelper.navigateTo("https://naveenautomationlabs.com/opencart/index.php");
+//        driver.get("https://naveenautomationlabs.com/opencart/index.php");
         driver.findElement(By.id("logo")).click();
        String name= driver.findElement(By.className("dropdown")).getText();
         Assert.assertEquals("name","name");

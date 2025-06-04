@@ -20,9 +20,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 public class FileHandeling {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private JavascriptExecutor jsExecutor;
+    private static WebDriver driver;
+    private static WebDriverWait wait;
+    private static JavascriptExecutor jsExecutor;
 
     // Constructor to initialize WebDriver, WebDriverWait, and JavascriptExecutor
     public FileHandeling(WebDriver driver) {
@@ -32,7 +32,7 @@ public class FileHandeling {
     }
 
     // 1. Upload a file to a web element
-    public void uploadFile(By locator, String filePath) {
+    public static void uploadFile(By locator, String filePath) {
         try {
             File file = new File(filePath);
             if (!file.exists()) {
@@ -46,7 +46,7 @@ public class FileHandeling {
     }
 
     // 2. Verify if a file has been downloaded
-    public boolean isFileDownloaded(String downloadDir, String fileName, long timeoutInSeconds) {
+    public static boolean isFileDownloaded(String downloadDir, String fileName, long timeoutInSeconds) {
         try {
             Path filePath = Paths.get(downloadDir, fileName);
             long startTime = System.currentTimeMillis();
@@ -65,7 +65,7 @@ public class FileHandeling {
     }
 
     // 3. Take a screenshot and save to a file
-    public void takeScreenshot(String filePath) {
+    public static void takeScreenshot(String filePath) {
         try {
             TakesScreenshot screenshot = (TakesScreenshot) driver;
             File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
@@ -78,7 +78,7 @@ public class FileHandeling {
     }
 
     // 4. Read a text file (e.g., test data)
-    public List<String> readTextFile(String filePath) {
+    public static List<String> readTextFile(String filePath) {
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -93,7 +93,7 @@ public class FileHandeling {
     }
 
     // 5. Write to a text file (e.g., test results or logs)
-    public void writeToTextFile(String filePath, List<String> lines) {
+    public static void writeToTextFile(String filePath, List<String> lines) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (String line : lines) {
                 writer.write(line);
@@ -105,7 +105,7 @@ public class FileHandeling {
     }
 
     // 6. Append to a text file
-    public void appendToTextFile(String filePath, String line) {
+    public static void appendToTextFile(String filePath, String line) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(line);
             writer.newLine();
@@ -115,7 +115,7 @@ public class FileHandeling {
     }
 
     // 7. Delete a file
-    public boolean deleteFile(String filePath) {
+    public static boolean deleteFile(String filePath) {
         try {
             Path path = Paths.get(filePath);
             return Files.deleteIfExists(path);
@@ -126,7 +126,7 @@ public class FileHandeling {
     }
 
     // 8. Clear a download directory
-    public void clearDownloadDirectory(String downloadDir) {
+    public static void clearDownloadDirectory(String downloadDir) {
         try {
             File dir = new File(downloadDir);
             if (dir.exists() && dir.isDirectory()) {
@@ -144,7 +144,7 @@ public class FileHandeling {
     }
 
     // 9. Verify file contents (simple text comparison)
-    public boolean verifyFileContents(String filePath, String expectedContent) {
+    public static boolean verifyFileContents(String filePath, String expectedContent) {
         try {
             String content = new String(Files.readAllBytes(Paths.get(filePath)));
             return content.contains(expectedContent);
@@ -155,7 +155,7 @@ public class FileHandeling {
     }
 
     // 10. Get file size
-    public long getFileSize(String filePath) {
+    public static long getFileSize(String filePath) {
         try {
             return Files.size(Paths.get(filePath));
         } catch (IOException e) {
@@ -165,7 +165,7 @@ public class FileHandeling {
     }
 
     // 11. Check if a file exists
-    public boolean doesFileExist(String filePath) {
+    public static boolean doesFileExist(String filePath) {
         try {
             return Files.exists(Paths.get(filePath));
         } catch (Exception e) {
@@ -175,7 +175,7 @@ public class FileHandeling {
     }
 
     // 12. Create a directory if it doesn't exist
-    public boolean createDirectory(String dirPath) {
+    public static boolean createDirectory(String dirPath) {
         try {
             Path path = Paths.get(dirPath);
             if (!Files.exists(path)) {
@@ -190,7 +190,7 @@ public class FileHandeling {
     }
 
     // 13. Trigger file download using JavaScript (for links that don't use <a> tags)
-    public void triggerFileDownload(By locator) {
+    public static void triggerFileDownload(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
             jsExecutor.executeScript("arguments[0].click();", element);

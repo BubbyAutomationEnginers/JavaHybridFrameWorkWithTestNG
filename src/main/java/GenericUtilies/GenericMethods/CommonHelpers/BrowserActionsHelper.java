@@ -18,9 +18,9 @@ import java.util.Set;
 
 import java.time.Duration;
 
-public class BrowserActionsHelper {
-    private WebDriver driver;
-    private JavascriptExecutor jsExecutor;
+        public class BrowserActionsHelper {
+    private static WebDriver driver;
+    private static JavascriptExecutor jsExecutor;
 
     // Constructor to initialize WebDriver and JavascriptExecutor
     public BrowserActionsHelper(WebDriver driver) {
@@ -29,7 +29,7 @@ public class BrowserActionsHelper {
     }
 
     // 1. Navigate to a URL
-    public void navigateTo(String url) {
+    public static void navigateTo(String url) {
         try {
             driver.get(url);
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class BrowserActionsHelper {
     }
 
     // 2. Refresh the current page
-    public void refreshPage() {
+    public static void refreshPage() {
         try {
             driver.navigate().refresh();
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class BrowserActionsHelper {
     }
 
     // 3. Navigate back
-    public void navigateBack() {
+    public static void navigateBack() {
         try {
             driver.navigate().back();
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class BrowserActionsHelper {
     }
 
     // 4. Navigate forward
-    public void navigateForward() {
+    public static void navigateForward() {
         try {
             driver.navigate().forward();
         } catch (Exception e) {
@@ -65,7 +65,7 @@ public class BrowserActionsHelper {
     }
 
     // 5. Get current URL
-    public String getCurrentUrl() {
+    public static String getCurrentUrl() {
         try {
             return driver.getCurrentUrl();
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class BrowserActionsHelper {
     }
 
     // 6. Get page title
-    public String getPageTitle() {
+    public static String getPageTitle() {
         try {
             return driver.getTitle();
         } catch (Exception e) {
@@ -85,7 +85,7 @@ public class BrowserActionsHelper {
     }
 
     // 7. Maximize browser window
-    public void maximizeWindow() {
+    public static void maximizeWindow() {
         try {
             driver.manage().window().maximize();
         } catch (Exception e) {
@@ -94,7 +94,7 @@ public class BrowserActionsHelper {
     }
 
     // 8. Minimize browser window
-    public void minimizeWindow() {
+    public static void minimizeWindow() {
         try {
             driver.manage().window().minimize();
         } catch (Exception e) {
@@ -103,7 +103,7 @@ public class BrowserActionsHelper {
     }
 
     // 9. Set browser window size
-    public void setWindowSize(int width, int height) {
+    public static void setWindowSize(int width, int height) {
         try {
             driver.manage().window().setSize(new org.openqa.selenium.Dimension(width, height));
         } catch (Exception e) {
@@ -112,7 +112,7 @@ public class BrowserActionsHelper {
     }
 
     // 10. Switch to a new window or tab
-    public void switchToWindow(String windowHandle) {
+    public static void switchToWindow(String windowHandle) {
         try {
             driver.switchTo().window(windowHandle);
         } catch (NoSuchWindowException e) {
@@ -121,7 +121,7 @@ public class BrowserActionsHelper {
     }
 
     // 11. Switch to the new window/tab (automatically picks the latest one)
-    public void switchToNewWindow() {
+    public static void switchToNewWindow() {
         try {
             String currentWindow = driver.getWindowHandle();
             Set<String> allWindows = driver.getWindowHandles();
@@ -137,7 +137,7 @@ public class BrowserActionsHelper {
     }
 
     // 12. Get all window handles
-    public Set<String> getAllWindowHandles() {
+    public static Set<String> getAllWindowHandles() {
         try {
             return driver.getWindowHandles();
         } catch (Exception e) {
@@ -147,7 +147,7 @@ public class BrowserActionsHelper {
     }
 
     // 13. Close the current window
-    public void closeCurrentWindow() {
+    public static void closeCurrentWindow() {
         try {
             driver.close();
         } catch (Exception e) {
@@ -156,7 +156,7 @@ public class BrowserActionsHelper {
     }
 
     // 14. Add a cookie
-    public void addCookie(String name, String value) {
+    public static void addCookie(String name, String value) {
         try {
             Cookie cookie = new Cookie(name, value);
             driver.manage().addCookie(cookie);
@@ -166,7 +166,7 @@ public class BrowserActionsHelper {
     }
 
     // 15. Get a cookie by name
-    public Cookie getCookie(String name) {
+    public static Cookie getCookie(String name) {
         try {
             return driver.manage().getCookieNamed(name);
         } catch (Exception e) {
@@ -176,7 +176,7 @@ public class BrowserActionsHelper {
     }
 
     // 16. Delete a cookie by name
-    public void deleteCookie(String name) {
+    public static void deleteCookie(String name) {
         try {
             driver.manage().deleteCookieNamed(name);
         } catch (Exception e) {
@@ -185,7 +185,7 @@ public class BrowserActionsHelper {
     }
 
     // 17. Delete all cookies
-    public void deleteAllCookies() {
+    public static void deleteAllCookies() {
         try {
             driver.manage().deleteAllCookies();
         } catch (Exception e) {
@@ -194,7 +194,7 @@ public class BrowserActionsHelper {
     }
 
     // 18. Take a screenshot and save to file
-    public void takeScreenshot(String filePath) {
+    public static void takeScreenshot(String filePath) {
         try {
             TakesScreenshot screenshot = ((TakesScreenshot) driver);
             File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
@@ -207,7 +207,7 @@ public class BrowserActionsHelper {
     }
 
     // 19. Execute JavaScript
-    public Object executeJavaScript(String script, Object... args) {
+    public static Object executeJavaScript(String script, Object... args) {
         try {
             return jsExecutor.executeScript(script, args);
         } catch (Exception e) {
@@ -217,7 +217,7 @@ public class BrowserActionsHelper {
     }
 
     // 20. Switch to a frame by index
-    public void switchToFrame(int index) {
+    public static void switchToFrame(int index) {
         try {
             driver.switchTo().frame(index);
         } catch (Exception e) {
@@ -226,7 +226,7 @@ public class BrowserActionsHelper {
     }
 
     // 21. Switch to a frame by name or ID
-    public void switchToFrame(String nameOrId) {
+    public static void switchToFrame(String nameOrId) {
         try {
             driver.switchTo().frame(nameOrId);
         } catch (Exception e) {
@@ -235,7 +235,7 @@ public class BrowserActionsHelper {
     }
 
     // 22. Switch to default content (out of frame)
-    public void switchToDefaultContent() {
+    public static void switchToDefaultContent() {
         try {
             driver.switchTo().defaultContent();
         } catch (Exception e) {
@@ -244,7 +244,7 @@ public class BrowserActionsHelper {
     }
 
     // 23. Get page source
-    public String getPageSource() {
+    public static String getPageSource() {
         try {
             return driver.getPageSource();
         } catch (Exception e) {
@@ -254,7 +254,7 @@ public class BrowserActionsHelper {
     }
 
     // 24. Set implicit wait timeout
-    public void setImplicitWait(long timeoutInSeconds) {
+    public static void setImplicitWait(long timeoutInSeconds) {
         try {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeoutInSeconds));
         } catch (Exception e) {
@@ -272,7 +272,7 @@ public class BrowserActionsHelper {
     }
 
     // 26. Set script execution timeout
-    public void setScriptTimeout(long timeoutInSeconds) {
+    public static void setScriptTimeout(long timeoutInSeconds) {
         try {
             driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(timeoutInSeconds));
         } catch (Exception e) {
@@ -281,7 +281,7 @@ public class BrowserActionsHelper {
     }
 
     // 27. Open a new tab
-    public void openNewTab() {
+    public static void openNewTab() {
         try {
             jsExecutor.executeScript("window.open('about:blank','_blank');");
             switchToNewWindow();
@@ -291,7 +291,7 @@ public class BrowserActionsHelper {
     }
 
     // 28. Get browser window size
-    public org.openqa.selenium.Dimension getWindowSize() {
+    public static org.openqa.selenium.Dimension getWindowSize() {
         try {
             return driver.manage().window().getSize();
         } catch (Exception e) {
@@ -301,7 +301,7 @@ public class BrowserActionsHelper {
     }
 
     // 29. Get browser window position
-    public org.openqa.selenium.Point getWindowPosition() {
+    public static org.openqa.selenium.Point getWindowPosition() {
         try {
             return driver.manage().window().getPosition();
         } catch (Exception e) {
@@ -311,7 +311,7 @@ public class BrowserActionsHelper {
     }
 
     // 30. Quit the browser
-    public void quitBrowser() {
+    public static void quitBrowser() {
         try {
             driver.quit();
         } catch (Exception e) {

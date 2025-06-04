@@ -5,6 +5,7 @@
         <listner class-name="AllureTestListners.ListnerrsForAllure"/>
     </listeners>
     <test name="Test">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="StepDefinitions.TestCaess"/>
         </classes>
